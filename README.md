@@ -30,7 +30,7 @@ To install this script, you will need a userscript manager like **Tampermonkey**
     * **Firefox:** Install [Tampermonkey](https://www.tampermonkey.net/) or [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) from the Firefox Add-ons.
 
 2. **Install the Kenya WMS Layers Script:**
-    * Click on the following link to install the script directly: [**(https://greasyfork.org/scripts/535837/Kenya%20WMS%20layers.user.js)**]
+    * Click on the following link to install the script directly: [**(https://update.greasyfork.org/scripts/535837/Kenya%20WMS%20layers.user.js)**]
     * Your userscript manager should automatically detect and prompt you to install the script.
     * Click **"Install"** to confirm the installation.
 
