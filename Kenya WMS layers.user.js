@@ -2,7 +2,7 @@
 // @name          Kenya WMS layers
 // @namespace     https://greasyfork.org/en/users/1087400-kid4rm90s
 // @description   Displays layers from Kenya WMS services in WME
-// @version       2025.05.22.01
+// @version       2025.05.22.02
 // @author        kid4rm90s
 // @match         https://*.waze.com/*/editor*
 // @match         https://*.waze.com/editor
@@ -33,7 +33,7 @@ orgianl authors: petrjanik, d2-mac, MajkiiTelini, and Croatian WMS layers (https
   var WMSLayerTogglers = {};
   const debug = false;
 
-   const updateMessage = 'Added new WMS layers for Kenya: Town Network 2025!';
+   const updateMessage = 'Added new WMS layers for Kenya based on classifications from the Kenya Roads Board';
    const scriptVersion = GM_info.script.version;
   const downloadUrl = 'https://greasyfork.org/scripts/535837-kenya-wms-layers/code/kenya-wms-layers.user.js';
    let wmeSDK;
@@ -56,7 +56,98 @@ orgianl authors: petrjanik, d2-mac, MajkiiTelini, and Croatian WMS layers (https
     // where .params.VERSION >= "1.3.0" use "CRS:" else use  "SRS:"" for the Coordinate System Value
     // New Kenya WMS service definition
 
-      var service_krb_road_network_2025 = {
+    //Class S Roads
+      var service_krb_class_s_2025 = {
+      type: "WMS",
+      url: "https://d2bzsyjwknqwf6.cloudfront.net/?",
+      params: {
+        SERVICE: "WMS",
+        VERSION: "1.1.1",
+        REQUEST: "GetMap",
+        FORMAT: "image/png",
+        TRANSPARENT: "true",
+        LAYERS: "ce2c97cc-35ab-11f0-a6ff-02af6ed49e2d",
+        CRS: "EPSG:3857",
+	    STYLES: "",
+		},
+      attribution: "Kenya Roads Board, 2025",
+      tileSize: new OL.Size(256, 256),
+	  comment: "krb_road_network_2025",
+    };
+        //Class A Roads
+      var service_krb_class_a_2025 = {
+      type: "WMS",
+      url: "https://d2bzsyjwknqwf6.cloudfront.net/?",
+      params: {
+        SERVICE: "WMS",
+        VERSION: "1.1.1",
+        REQUEST: "GetMap",
+        FORMAT: "image/png",
+        TRANSPARENT: "true",
+        LAYERS: "cb586e40-35ab-11f0-bfeb-02af6ed49e2d",
+        CRS: "EPSG:3857",
+	    STYLES: "",
+		},
+      attribution: "Kenya Roads Board, 2025",
+      tileSize: new OL.Size(256, 256),
+	  comment: "krb_road_network_2025",
+    };
+        //Class B Roads
+      var service_krb_class_b_2025 = {
+      type: "WMS",
+      url: "https://d2bzsyjwknqwf6.cloudfront.net/?",
+      params: {
+        SERVICE: "WMS",
+        VERSION: "1.1.1",
+        REQUEST: "GetMap",
+        FORMAT: "image/png",
+        TRANSPARENT: "true",
+        LAYERS: "c8916c98-35ab-11f0-83a9-02af6ed49e2d",
+        CRS: "EPSG:3857",
+	    STYLES: "",
+		},
+      attribution: "Kenya Roads Board, 2025",
+      tileSize: new OL.Size(256, 256),
+	  comment: "krb_road_network_2025",
+    };
+        //Class C Roads
+      var service_krb_class_c_2025 = {
+      type: "WMS",
+      url: "https://d2bzsyjwknqwf6.cloudfront.net/?",
+      params: {
+        SERVICE: "WMS",
+        VERSION: "1.1.1",
+        REQUEST: "GetMap",
+        FORMAT: "image/png",
+        TRANSPARENT: "true",
+        LAYERS: "f1af346a-35a7-11f0-8804-02af6ed49e2d",
+        CRS: "EPSG:3857",
+	    STYLES: "",
+		},
+      attribution: "Kenya Roads Board, 2025",
+      tileSize: new OL.Size(256, 256),
+	  comment: "krb_road_network_2025",
+    };
+        //Class ABC Urban Roads
+      var service_krb_class_abcurban_2025 = {
+      type: "WMS",
+      url: "https://d2bzsyjwknqwf6.cloudfront.net/?",
+      params: {
+        SERVICE: "WMS",
+        VERSION: "1.1.1",
+        REQUEST: "GetMap",
+        FORMAT: "image/png",
+        TRANSPARENT: "true",
+        LAYERS: "1bde7512-35ac-11f0-a68e-02af6ed49e2d",
+        CRS: "EPSG:3857",
+	    STYLES: "",
+		},
+      attribution: "Kenya Roads Board, 2025",
+      tileSize: new OL.Size(256, 256),
+	  comment: "krb_road_network_2025",
+    };
+        //Class D,E,F,G Roads
+      var service_krb_class_defg_2025 = {
       type: "WMS",
       url: "https://d2bzsyjwknqwf6.cloudfront.net/?",
       params: {
@@ -94,8 +185,13 @@ orgianl authors: petrjanik, d2-mac, MajkiiTelini, and Croatian WMS layers (https
 
     // Add WMS layers
 	//Streets and Highways
-    WMSLayerTogglers.krb_road_network_2025 = addLayerToggler(groupTogglerHRV, "KENYA PROPOSED ROAD REGISTER 2025", [addNewLayer("Kenya:krb_road_network_2025", service_krb_road_network_2025, ZIndexes.overlay, 1.0)]);
-    WMSLayerTogglers.krb_town_network_2025 = addLayerToggler(groupTogglerHRV, "KENYA TOWN", [addNewLayer("Kenya:krb_town_network_2025", service_krb_town_network_2025, ZIndexes.overlay, 1.0)]);
+  WMSLayerTogglers.krb_road_network_2025 = addLayerToggler(groupTogglerHRV, "KENYA Class S Roads 2025", [addNewLayer("Kenya:krb_class_s_2025", service_krb_class_s_2025, ZIndexes.overlay, 1.0)]);
+  WMSLayerTogglers.krb_road_network_2025 = addLayerToggler(groupTogglerHRV, "KENYA Class A Roads 2025", [addNewLayer("Kenya:krb_class_a_2025", service_krb_class_a_2025, ZIndexes.overlay, 1.0)]);
+  WMSLayerTogglers.krb_road_network_2025 = addLayerToggler(groupTogglerHRV, "KENYA Class B Roads 2025", [addNewLayer("Kenya:krb_class_b_2025", service_krb_class_b_2025, ZIndexes.overlay, 1.0)]);
+  WMSLayerTogglers.krb_road_network_2025 = addLayerToggler(groupTogglerHRV, "KENYA Class C Roads 2025", [addNewLayer("Kenya:krb_class_c_2025", service_krb_class_c_2025, ZIndexes.overlay, 1.0)]);
+  WMSLayerTogglers.krb_road_network_2025 = addLayerToggler(groupTogglerHRV, "KENYA Class ABC Urban Roads 2025", [addNewLayer("Kenya:krb_class_abcurban_2025", service_krb_class_abcurban_2025, ZIndexes.overlay, 1.0)]);
+  WMSLayerTogglers.krb_road_network_2025 = addLayerToggler(groupTogglerHRV, "KENYA Class DEFG Roads 2025", [addNewLayer("Kenya:krb_class_defg_2025", service_krb_class_defg_2025, ZIndexes.overlay, 1.0)]);
+  WMSLayerTogglers.krb_town_network_2025 = addLayerToggler(groupTogglerHRV, "KENYA TOWN", [addNewLayer("Kenya:krb_town_network_2025", service_krb_town_network_2025, ZIndexes.overlay, 1.0)]);
 
 	if (debug) console.log(`${scriptName}: WMSLayerTogglers`, WMSLayerTogglers);
 
