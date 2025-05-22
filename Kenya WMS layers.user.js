@@ -2,13 +2,13 @@
 // @name          Kenya WMS layers
 // @namespace     https://greasyfork.org/en/users/1087400-kid4rm90s
 // @description   Displays layers from Kenya WMS services in WME
-// @version       2025.05.13.03
+// @version       2025.05.22.01
 // @author        kid4rm90s
 // @match         https://*.waze.com/*/editor*
 // @match         https://*.waze.com/editor
 // @exclude       https://*.waze.com/user/editor*
 // @grant         unsafeWindow
-// @run-at		  document-end
+// @run-at		    document-end
 // @license       MIT
 // @grant         GM_xmlhttpRequest
 // @connect       greasyfork.org
@@ -33,7 +33,7 @@ orgianl authors: petrjanik, d2-mac, MajkiiTelini, and Croatian WMS layers (https
   var WMSLayerTogglers = {};
   const debug = false;
 
-   const updateMessage = 'Proposed Road Network 2025 minor update!';
+   const updateMessage = 'Added new WMS layers for Kenya: Town Network 2025!';
    const scriptVersion = GM_info.script.version;
   const downloadUrl = 'https://greasyfork.org/scripts/535837-kenya-wms-layers/code/kenya-wms-layers.user.js';
    let wmeSDK;
@@ -52,6 +52,7 @@ orgianl authors: petrjanik, d2-mac, MajkiiTelini, and Croatian WMS layers (https
     var groupTogglerHRV = addGroupToggler(false, "layer-switcher-group_SSRN", "WMS Kenya");
 
 
+
     // where .params.VERSION >= "1.3.0" use "CRS:" else use  "SRS:"" for the Coordinate System Value
     // New Kenya WMS service definition
 
@@ -60,7 +61,7 @@ orgianl authors: petrjanik, d2-mac, MajkiiTelini, and Croatian WMS layers (https
       url: "https://d2bzsyjwknqwf6.cloudfront.net/?",
       params: {
         SERVICE: "WMS",
-        VERSION: "1.1.0",
+        VERSION: "1.1.1",
         REQUEST: "GetMap",
         FORMAT: "image/png",
         TRANSPARENT: "true",
@@ -72,10 +73,29 @@ orgianl authors: petrjanik, d2-mac, MajkiiTelini, and Croatian WMS layers (https
       tileSize: new OL.Size(256, 256),
 	  comment: "krb_road_network_2025",
     };
+    // Add Town WMS layers to the map
+          var service_krb_town_network_2025 = {
+      type: "WMS",
+      url: "https://d2bzsyjwknqwf6.cloudfront.net/?",
+      params: {
+        SERVICE: "WMS",
+        VERSION: "1.1.1",
+        REQUEST: "GetMap",
+        FORMAT: "image/png",
+        TRANSPARENT: "true",
+        LAYERS: "f084d310-35a7-11f0-bfeb-02af6ed49e2d",
+        CRS: "EPSG:3857",
+	    STYLES: "",
+		},
+      attribution: "KRB, 2025 (Town)",
+      tileSize: new OL.Size(256, 256),
+	  comment: "krb_road_network_2025",
+    };
 
     // Add WMS layers
 	//Streets and Highways
     WMSLayerTogglers.krb_road_network_2025 = addLayerToggler(groupTogglerHRV, "KENYA PROPOSED ROAD REGISTER 2025", [addNewLayer("Kenya:krb_road_network_2025", service_krb_road_network_2025, ZIndexes.overlay, 1.0)]);
+    WMSLayerTogglers.krb_town_network_2025 = addLayerToggler(groupTogglerHRV, "KENYA TOWN", [addNewLayer("Kenya:krb_town_network_2025", service_krb_town_network_2025, ZIndexes.overlay, 1.0)]);
 
 	if (debug) console.log(`${scriptName}: WMSLayerTogglers`, WMSLayerTogglers);
 
