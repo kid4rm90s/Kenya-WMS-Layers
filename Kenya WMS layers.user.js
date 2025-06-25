@@ -2,7 +2,7 @@
 // @name          Kenya WMS layers
 // @namespace     https://greasyfork.org/en/users/1087400-kid4rm90s
 // @description   Displays layers from Kenya WMS services in WME
-// @version       2025.06.25.01
+// @version       2025.06.25.02
 // @author        kid4rm90s
 // @match         https://*.waze.com/*/editor*
 // @match         https://*.waze.com/editor
@@ -33,7 +33,7 @@ orgianl authors: petrjanik, d2-mac, MajkiiTelini, and Croatian WMS layers (https
   var WMSLayerTogglers = {};
   const debug = false;
 
-   const updateMessage = 'Town names now show on the top of the WMS layers.';
+   const updateMessage = 'Town names now show on the top of the WMS layers and bug fix';
    const scriptVersion = GM_info.script.version;
   const downloadUrl = 'https://greasyfork.org/scripts/535837-kenya-wms-layers/code/kenya-wms-layers.user.js';
    let wmeSDK;
@@ -47,7 +47,7 @@ orgianl authors: petrjanik, d2-mac, MajkiiTelini, and Croatian WMS layers (https
 
     ZIndexes.base = W.map.olMap.Z_INDEX_BASE.Overlay + 10;
     ZIndexes.overlay = W.map.olMap.Z_INDEX_BASE.Overlay + 150;
-    ZIndexes.popup = W.map.olMap.Z_INDEX_BASE.Popup + 150;
+    ZIndexes.popup = W.map.olMap.Z_INDEX_BASE.Overlay + 500;
 
     var groupTogglerHRV = addGroupToggler(false, "layer-switcher-group_SSRN", "WMS Kenya");
 
