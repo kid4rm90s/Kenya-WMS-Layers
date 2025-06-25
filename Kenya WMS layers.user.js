@@ -2,7 +2,7 @@
 // @name          Kenya WMS layers
 // @namespace     https://greasyfork.org/en/users/1087400-kid4rm90s
 // @description   Displays layers from Kenya WMS services in WME
-// @version       2025.05.22.02
+// @version       2025.06.25.01
 // @author        kid4rm90s
 // @match         https://*.waze.com/*/editor*
 // @match         https://*.waze.com/editor
@@ -33,7 +33,7 @@ orgianl authors: petrjanik, d2-mac, MajkiiTelini, and Croatian WMS layers (https
   var WMSLayerTogglers = {};
   const debug = false;
 
-   const updateMessage = 'Added new WMS layers for Kenya based on classifications from the Kenya Roads Board';
+   const updateMessage = 'Town names now show on the top of the WMS layers.';
    const scriptVersion = GM_info.script.version;
   const downloadUrl = 'https://greasyfork.org/scripts/535837-kenya-wms-layers/code/kenya-wms-layers.user.js';
    let wmeSDK;
@@ -191,7 +191,7 @@ orgianl authors: petrjanik, d2-mac, MajkiiTelini, and Croatian WMS layers (https
   WMSLayerTogglers.krb_road_network_2025 = addLayerToggler(groupTogglerHRV, "KENYA Class C Roads 2025", [addNewLayer("Kenya:krb_class_c_2025", service_krb_class_c_2025, ZIndexes.overlay, 1.0)]);
   WMSLayerTogglers.krb_road_network_2025 = addLayerToggler(groupTogglerHRV, "KENYA Class ABC Urban Roads 2025", [addNewLayer("Kenya:krb_class_abcurban_2025", service_krb_class_abcurban_2025, ZIndexes.overlay, 1.0)]);
   WMSLayerTogglers.krb_road_network_2025 = addLayerToggler(groupTogglerHRV, "KENYA Class DEFG Roads 2025", [addNewLayer("Kenya:krb_class_defg_2025", service_krb_class_defg_2025, ZIndexes.overlay, 1.0)]);
-  WMSLayerTogglers.krb_town_network_2025 = addLayerToggler(groupTogglerHRV, "KENYA TOWN", [addNewLayer("Kenya:krb_town_network_2025", service_krb_town_network_2025, ZIndexes.overlay, 1.0)]);
+  WMSLayerTogglers.krb_town_network_2025 = addLayerToggler(groupTogglerHRV, "KENYA TOWN", [addNewLayer("Kenya:krb_town_network_2025", service_krb_town_network_2025, ZIndexes.popup, 1.0)]);
 
 	if (debug) console.log(`${scriptName}: WMSLayerTogglers`, WMSLayerTogglers);
 
